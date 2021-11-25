@@ -15,7 +15,7 @@ class PrendasSeeder extends Seeder
     public function run()
     {
         $faker=Faker::create();
-        for ($i = 0; $i < 150; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             Prendas::create(
                 [
                     "descripcion"=>$faker->name,

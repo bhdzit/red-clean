@@ -23,6 +23,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/prendas',[PrendasControler::class,"getPrendasView"] )->middleware(['auth'])->name('prendas.index');
-
+Route::post('/guardarPrenda',[PrendasControler::class,"guardarPrenda"])->name("guardarPrenda");
+Route::post('/editarPrenda',[PrendasControler::class,"editarPrenda"])->name("editarPrenda");
 Route::post('/eliminarPrenda',[PrendasControler::class,"eliminarPrenda"])->middleware("auth")->name("eliminarPrenda");
 require __DIR__.'/auth.php';

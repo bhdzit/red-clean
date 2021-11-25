@@ -16,4 +16,19 @@ class PrendasControler extends Controller
         Prendas::destroy($request->idPrenda);
         return redirect(route("prendas.index"));
     }
+    public function guardarPrenda(Request $request){
+        $prenda=new Prendas();
+        $prenda->descripcion=$request->descripcion;
+        $prenda->precio=$request->precio;
+        $prenda->save();
+        return redirect(route("prendas.index"));
+    }
+
+    public function editarPrenda(Request $request){
+        $prenda=Prendas::find($request->id);
+        $prenda->descripcion=$request->descripcion;
+        $prenda->precio=$request->precio;
+        $prenda->save();
+        return redirect(route("prendas.index"));
+    }
 }

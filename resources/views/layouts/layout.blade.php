@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.css"/>
+ 
 </head>
 
 <body class="hold-transition sidebar-mini">
