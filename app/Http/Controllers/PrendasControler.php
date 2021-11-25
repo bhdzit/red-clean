@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class PrendasControler extends Controller
 {
     public function getPrendasView(){
-        return view("admin.prendas",["prendas"=>Prendas::get()]);
+        
+        return view("admin.prendas",["arregloDeprendas"=>Prendas::get()]);
     }
     public function eliminarPrenda(Request $request){
        

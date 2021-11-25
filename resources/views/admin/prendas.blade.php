@@ -38,7 +38,7 @@
                                         </thead>
                                         <tbody>
                                             @php $i=1; @endphp
-                                            @foreach ($prendas as $prenda)
+                                            @foreach ($arregloDeprendas as $prenda)
 
                                                 <tr>
                                                     <td>{{ $i++ }}</td>

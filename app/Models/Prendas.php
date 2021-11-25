@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Prendas extends Model
 {
     use HasFactory;
+    
 }
