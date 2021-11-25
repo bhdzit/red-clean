@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Prendas;
 use Illuminate\Database\Seeder;
-
+use Faker\Factory as Faker;
 class PrendasSeeder extends Seeder
 {
     /**
@@ -13,6 +14,14 @@ class PrendasSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $faker=Faker::create();
+        for ($i = 0; $i < 5; $i++) {
+            Prendas::create(
+                [
+                    "descripcion"=>$faker->name,
+                    "precio"=>$faker->randomDigit
+                ]
+            );
+        }
     }
 }

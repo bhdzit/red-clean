@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -91,7 +92,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../dashboard" class="nav-link">
+                            <a href="../prendas" class="nav-link">
                                 <i class="nav-icon fas fa-tshirt"></i>
                                 <p>
                                     Prendas
@@ -156,6 +157,8 @@
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
     @yield('script')
 </body>
 
