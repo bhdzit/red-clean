@@ -77,7 +77,7 @@
                         
                         
                         <li class="nav-item">
-                            <a href="../dashboard" class="nav-link">
+                            <a href="../ingresos" class="nav-link">
                                 <i class="nav-icon fas fa-money-bill-alt"></i>
                                 <p>
                                     Ingresos

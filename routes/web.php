@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IngresosController;
 use App\Http\Controllers\PrendasControler;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,11 @@ Route::get('/prendas',[PrendasControler::class,"getPrendasView"] )->middleware([
 Route::post('/guardarPrenda',[PrendasControler::class,"guardarPrenda"])->name("guardarPrenda");
 Route::post('/editarPrenda',[PrendasControler::class,"editarPrenda"])->name("editarPrenda");
 Route::post('/eliminarPrenda',[PrendasControler::class,"eliminarPrenda"])->middleware("auth")->name("eliminarPrenda");
+
+Route::get('ingresos',[IngresosController::class,"getIngresosView"])->middleware(["auth"])->name("ingresos.index");
+Route::post('/guardarIngresos',[IngresosController::class,"guardarIngresos"])->name("guardarIngresos");
+Route::post('/editarIngresos',[IngresosController::class,"editarIngresos"])->name("editarIngresos");
+Route::post('/eliminarIngresos',[IngresosController::class,"eliminarIngresos"])->middleware("auth")->name("eliminarIngresos");
+
+
 require __DIR__.'/auth.php';
