@@ -52,7 +52,7 @@
                                                 <tr>
                                                     <td>{{ $i++ }}</td>
                                                     <td>{{ $usuario->name }}</td>
-                                                    <td>$ {{ $usuario->email }}</td>
+                                                    <td>{{ $usuario->email }}</td>
                                                     <td>@if ($usuario->tipo) Admin @else Empleados @endif</td>
                                                     <td>
                                                         <button class="btn btn-success " data-toggle="modal"
