@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EgresosController;
 use App\Http\Controllers\IngresosController;
 use App\Http\Controllers\PrendasControler;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,13 @@ Route::get('ingresos',[IngresosController::class,"getIngresosView"])->middleware
 Route::post('/guardarIngresos',[IngresosController::class,"guardarIngresos"])->name("guardarIngresos");
 Route::post('/editarIngresos',[IngresosController::class,"editarIngresos"])->name("editarIngresos");
 Route::post('/eliminarIngresos',[IngresosController::class,"eliminarIngresos"])->middleware("auth")->name("eliminarIngresos");
+
+
+Route::get('egresos',[EgresosController::class,"getEgresosView"])->middleware(["auth"])->name("egresos.index");
+Route::post('/guardarEgreso',[EgresosController::class,"guardarEgresos"])->name("guardarEgreso");
+Route::post('/editarEgreso',[EgresosController::class,"editarEgresos"])->name("editarEgreso");
+Route::post('/eliminarEgreso',[EgresosController::class,"eliminarEgresos"])->middleware("auth")->name("eliminarEgreso");
+
 
 
 require __DIR__.'/auth.php';

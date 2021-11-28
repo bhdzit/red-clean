@@ -85,7 +85,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../dashboard" class="nav-link">
+                            <a href="../egresos" class="nav-link">
                                 <i class="nav-icon far fa-money-bill-alt"></i>
                                 <p>
                                     Egresos
