@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
                //
                User::create(["name"=>"Demo",
                "email"=>"demo@demo.com",
+               "tipo"=>true,
                "password"=>Hash::make('1234567890')]);
     }
 }

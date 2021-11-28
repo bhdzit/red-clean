@@ -3,6 +3,7 @@
 use App\Http\Controllers\EgresosController;
 use App\Http\Controllers\IngresosController;
 use App\Http\Controllers\PrendasControler;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,13 @@ Route::get('egresos',[EgresosController::class,"getEgresosView"])->middleware(["
 Route::post('/guardarEgreso',[EgresosController::class,"guardarEgresos"])->name("guardarEgreso");
 Route::post('/editarEgreso',[EgresosController::class,"editarEgresos"])->name("editarEgreso");
 Route::post('/eliminarEgreso',[EgresosController::class,"eliminarEgresos"])->middleware("auth")->name("eliminarEgreso");
+
+Route::get('usuarios',[UserController::class,"getUsuariosView"])->middleware(["auth"])->name("usuarios.index");
+Route::post('/guardarUsuario',[UserController::class,"guardarUsuario"])->name("guardarUsuario");
+Route::post('/editarUsuario',[UserController::class,"editarUsuario"])->name("editarUsuario");
+Route::post('/eliminarUsuario',[UserController::class,"eliminarUsuario"])->middleware("auth")->name("eliminarUsuario");
+
+
 
 
 
