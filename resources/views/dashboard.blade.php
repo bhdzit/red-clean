@@ -134,7 +134,7 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-
+    @endsection
   @section('script')
         
 <!-- jQuery -->
@@ -291,6 +291,6 @@
 
 </script>
 
-  @endsection
+ 
 
 @endsection

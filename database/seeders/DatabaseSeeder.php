@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PrendasSeeder::class,
             IngresosSeeders::class,
             EgresosSeeders::class,
+            CajaSeeder::class,
         ]);
 
     }
