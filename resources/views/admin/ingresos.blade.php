@@ -51,12 +51,12 @@
 
                                                 <tr>
                                                     <td>{{ $i++ }}</td>
-                                                    <td>{{ $ingreso->descripcion }}</td>
-                                                    <td>$ {{ $ingreso->cantidad }}</td>
+                                                    <td>@foreach ($ingreso->items as $item)
+                                                        <p>{{ $item->descripcion }} / $ {{ $item->total }}</p>
+                                                    @endforeach</td>
+                                                    <td>$ {{ $ingreso->items->sum('total') }}</td>
                                                     <td>
-                                                        <button class="btn btn-success " data-toggle="modal"
-                                                            data-target="#editarIngresos{{ $ingreso->id }}"><i
-                                                                class="fa fa-btn fa-edit"></i></button>
+                                                       
                                                         <form class="d-inline"
                                                             action="{{ route('eliminarIngresos') }}" method="POST">
                                                             {{ csrf_field() }}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CajasController;
 use App\Http\Controllers\EgresosController;
 use App\Http\Controllers\IngresosController;
 use App\Http\Controllers\PrendasControler;
@@ -52,6 +53,8 @@ Route::post('/eliminarUsuario',[UserController::class,"eliminarUsuario"])->middl
 Route::get('ventas',[VentasController::class,"getVentasView"])->name("ventas.index");
 Route::get('imprimirTicket/{id}',[VentasController::class,"getTicketPDF"]);
 Route::post('guardarVenta',[VentasController::class,"guardarVenta"])->name("guardarVenta");
+
+Route::get("corte-caja",[CajasController::class,"getCajasView"]);
 
 
 
