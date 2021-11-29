@@ -67,7 +67,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../dashboard" class="nav-link">
+                            <a href="../cortes-caja" class="nav-link">
                                 <i class="nav-icon fas fa-file-invoice-dollar"></i>
                                 <p>
                                 Cortes De Caja

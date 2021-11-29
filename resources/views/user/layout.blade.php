@@ -60,7 +60,7 @@
 
 
                         <li class="nav-item">
-                            <a href="../dashboard" class="nav-link">
+                            <a href="../ventas" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-cart"></i>
 
                                 <p>

@@ -9,10 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -48,5 +49,14 @@ class User extends Authenticatable
        return DB::table('cajas')
        ->where("user_id",Auth::id())
        ->orderBy('created_at', 'desc')->first();; 
+    }
+
+    public function esAdmin()
+    {
+        return $this->tipo == 1 ? true : false;
+    }
+    public function esUser()
+    {
+        return $this->tipo == 0 ? true : false;
     }
 }

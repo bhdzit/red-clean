@@ -6,6 +6,7 @@ use App\Http\Controllers\IngresosController;
 use App\Http\Controllers\PrendasControler;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VentasController;
+use App\Models\Caja;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::group(['middleware' => 'verifyIsAdmin'], function () {
 Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -47,14 +48,17 @@ Route::get('usuarios',[UserController::class,"getUsuariosView"])->middleware(["a
 Route::post('/guardarUsuario',[UserController::class,"guardarUsuario"])->name("guardarUsuario");
 Route::post('/editarUsuario',[UserController::class,"editarUsuario"])->name("editarUsuario");
 Route::post('/eliminarUsuario',[UserController::class,"eliminarUsuario"])->middleware("auth")->name("eliminarUsuario");
+Route::get("cortes-caja",[CajasController::class,"getCajasView"])->name("caja.index");
+Route::post("cerrar-caja",[CajasController::class,"cerrarCaja"])->name("cerrarCaja");
 
+
+});
 //Rutas De Usuarios
-
+Route::group(['middleware' => 'verifyIsUser'], function () {
 Route::get('ventas',[VentasController::class,"getVentasView"])->name("ventas.index");
 Route::get('imprimirTicket/{id}',[VentasController::class,"getTicketPDF"]);
 Route::post('guardarVenta',[VentasController::class,"guardarVenta"])->name("guardarVenta");
-
-Route::get("corte-caja",[CajasController::class,"getCajasView"]);
+});
 
 
 
