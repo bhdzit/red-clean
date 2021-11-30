@@ -50,8 +50,7 @@ Route::post('/editarUsuario',[UserController::class,"editarUsuario"])->name("edi
 Route::post('/eliminarUsuario',[UserController::class,"eliminarUsuario"])->middleware("auth")->name("eliminarUsuario");
 Route::get("cortes-caja",[CajasController::class,"getCajasView"])->name("caja.index");
 Route::post("cerrar-caja",[CajasController::class,"cerrarCaja"])->name("cerrarCaja");
-
-
+Route::get("imprimirCaja/{id}",[CajasController::class,"imprimirCaja"])->name("imprimirCaja");
 });
 //Rutas De Usuarios
 Route::group(['middleware' => 'verifyIsUser'], function () {

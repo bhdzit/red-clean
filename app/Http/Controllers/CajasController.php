@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Caja;
+use App\Models\Notas;
 use App\Models\Ventas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use PDF;
 class CajasController extends Controller
 {
     //
@@ -36,5 +37,14 @@ class CajasController extends Controller
 
         ]);
         return redirect(route("caja.index"));
+    }
+
+    public function imprimirCaja($id)
+    {
+        $data=Notas::where("caja_id","=",$id)
+        ->get()->append("items");
+        $pdf = PDF::loadView('layouts.cajadompdf', ["notas"=>$data]);
+       
+        return  $pdf->stream(); 
     }
 }
