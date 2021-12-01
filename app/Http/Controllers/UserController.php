@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Caja;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
@@ -12,6 +14,7 @@ class UserController extends Controller
         return view("admin.usuarios",["usuarios"=>User::get()]);
     }
     public function eliminarUsuario(Request $request){
+        
         User::destroy($request->idUsuario);
         return redirect(route("usuarios.index"));
     }
@@ -23,6 +26,14 @@ class UserController extends Controller
         $usuarios->tipo=$request->tipo;
         $usuarios->password=Hash::make($request->password);
         $usuarios->save();
+
+
+        Caja::create([
+            "caja"=>1,
+            "status"=>false,
+            "user_id"=>$usuarios->id,
+        ]);
+
         return redirect(route("usuarios.index"));
     }
 

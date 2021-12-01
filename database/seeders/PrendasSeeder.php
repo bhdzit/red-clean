@@ -15,13 +15,15 @@ class PrendasSeeder extends Seeder
     public function run()
     {
         $faker=Faker::create();
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             Prendas::create(
                 [
-                    "descripcion"=>$faker->name,
+                    "descripcion"=>$faker->word,
                     "precio"=>$faker->randomDigit
                 ]
             );
         }
+
+      
     }
 }

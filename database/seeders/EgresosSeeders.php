@@ -15,7 +15,7 @@ class EgresosSeeders extends Seeder
     public function run()
     {
         $faker=Faker::create();
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 150; $i++) {
             Egresos::create(
                 [
                     "descripcion"=>$faker->name,

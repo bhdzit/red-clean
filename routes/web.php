@@ -7,6 +7,8 @@ use App\Http\Controllers\PrendasControler;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VentasController;
 use App\Models\Caja;
+use App\Models\Ventas;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,11 +23,49 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => 'verifyIsAdmin'], function () {
 Route::get('/', function () {
-    return view('dashboard');
+    $ventas=Ventas::groupBy(DB::raw("DATE_FORMAT(created_at,'%d-%m-%Y')"))
+    ->orderBy("created_at")
+    ->select(DB::raw("count(created_at) as cantidad"),DB::raw("DATE_FORMAT(created_at,'%d-%m-%Y') as fecha"))
+    ->get();
+
+    $ganacias=Ventas::groupBy(DB::raw("DATE_FORMAT(created_at,'%d-%m-%Y')"))
+    ->orderBy("created_at")
+    ->select(DB::raw("sum(total) as cantidad"),DB::raw("DATE_FORMAT(created_at,'%d-%m-%Y') as fecha"))
+    ->get();
+    
+    $productos=Ventas::leftJoin("prendas","prendas.id","=","prenda_id")
+    ->groupBy("prenda_id")
+    ->select("prenda_id","descripcion",DB::raw("count(prenda_id) as cantidad"),DB::raw("sum(total) as ganancias"))
+    ->get();
+    
+
+
+    return view('dashboard',["ventasRealizadas"=>$ventas,
+                            "ganacias"=>$ganacias,
+                            "prendas"=>$productos]);
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $ventas=Ventas::groupBy(DB::raw("DATE_FORMAT(created_at,'%d-%m-%Y')"))
+    ->orderBy("created_at")
+    ->select(DB::raw("count(created_at) as cantidad"),DB::raw("DATE_FORMAT(created_at,'%d-%m-%Y') as fecha"))
+    ->get();
+
+    $ganacias=Ventas::groupBy(DB::raw("DATE_FORMAT(created_at,'%d-%m-%Y')"))
+    ->orderBy("created_at")
+    ->select(DB::raw("sum(total) as cantidad"),DB::raw("DATE_FORMAT(created_at,'%d-%m-%Y') as fecha"))
+    ->get();
+    
+    $productos=Ventas::leftJoin("prendas","prendas.id","=","prenda_id")
+    ->groupBy("prenda_id")
+    ->select("prenda_id","descripcion",DB::raw("count(prenda_id) as cantidad"),DB::raw("sum(total) as ganancias"))
+    ->get();
+    
+
+
+    return view('dashboard',["ventasRealizadas"=>$ventas,
+                            "ganacias"=>$ganacias,
+                            "prendas"=>$productos]);
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/prendas',[PrendasControler::class,"getPrendasView"] )->middleware(['auth'])->name('prendas.index');

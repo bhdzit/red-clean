@@ -161,12 +161,40 @@
 
     // Get context with jQuery - using jQuery's .get() method.
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+    
+    let diasDeVentas=[];
+    let cantidadDeVentas=[];
+    
+    @foreach($ventasRealizadas as $venta)
+      diasDeVentas.push("{{$venta->fecha}}");
+      cantidadDeVentas.push("{{$venta->cantidad}}");
+    @endforeach
+
+    let diasDeGanancias=[];
+    let cantidadDeGanancias=[];
+
+    @foreach($ganacias as $ganacia)
+      diasDeGanancias.push("{{$ganacia->fecha}}");
+      cantidadDeGanancias.push("{{$ganacia->cantidad}}");
+    @endforeach
+
+    let productos=[];
+    let numProducto=[];
+  let ganaciasPorProductos=[];
+    @foreach($prendas as $prenda)
+      productos.push("{{$prenda->descripcion}}");
+      numProducto.push("{{$prenda->cantidad}}");
+      ganaciasPorProductos.push("{{$prenda->ganancias}}");
+    @endforeach
+
+
+
 
     var areaChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels  : diasDeVentas,
       datasets: [
         {
-          label               : 'Digital Goods',
+          label               : 'Ventas',
           backgroundColor     : 'rgba(60,141,188,0.9)',
           borderColor         : 'rgba(60,141,188,0.8)',
           pointRadius          : false,
@@ -174,19 +202,9 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90]
+          data                :cantidadDeVentas
         },
-        {
-          label               : 'Electronics',
-          backgroundColor     : 'rgba(210, 214, 222, 1)',
-          borderColor         : 'rgba(210, 214, 222, 1)',
-          pointRadius         : false,
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
-        },
+       
       ]
     }
 
@@ -217,6 +235,25 @@
       options: areaChartOptions
     })
 
+
+    var ganaciasChartData = {
+      labels  : diasDeGanancias,
+      datasets: [
+        {
+          label               : 'Ganancias',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                :cantidadDeGanancias
+        },
+       
+      ]
+    }
+
     //-------------
     //- LINE CHART -
     //--------------
@@ -224,12 +261,12 @@
     var lineChartOptions = $.extend(true, {}, areaChartOptions)
     var lineChartData = $.extend(true, {}, areaChartData)
     lineChartData.datasets[0].fill = false;
-    lineChartData.datasets[1].fill = false;
+ 
     lineChartOptions.datasetFill = false
 
     var lineChart = new Chart(lineChartCanvas, {
       type: 'line',
-      data: lineChartData,
+      data: ganaciasChartData,
       options: lineChartOptions
     })
 
@@ -237,20 +274,19 @@
     //- DONUT CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
+    let colores=[];
+    for(i=0;i<productos.length;i++){
+      var randomColor = Math.floor(Math.random()*16777215).toString(16);
+      colores.push("#"+randomColor);
+    }
+    
     var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
-      labels: [
-          'Chrome',
-          'IE',
-          'FireFox',
-          'Safari',
-          'Opera',
-          'Navigator',
-      ],
+      labels: productos,
       datasets: [
         {
-          data: [700,500,400,600,300,100],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          data: numProducto,
+          backgroundColor : colores,
         }
       ]
     }
@@ -272,10 +308,7 @@
     //-------------
     var barChartCanvas = $('#barChart').get(0).getContext('2d')
     var barChartData = $.extend(true, {}, areaChartData)
-    var temp0 = areaChartData.datasets[0]
-    var temp1 = areaChartData.datasets[1]
-    barChartData.datasets[0] = temp1
-    barChartData.datasets[1] = temp0
+   
 
     var barChartOptions = {
       responsive              : true,
@@ -283,9 +316,29 @@
       datasetFill             : false
     }
 
+    var gananciasProductosChartData = {
+      labels  : productos,
+      datasets: [
+        {
+          label               : 'Ventas',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                :ganaciasPorProductos
+        },
+       
+      ]
+    }
+
+
+
     new Chart(barChartCanvas, {
       type: 'bar',
-      data: barChartData,
+      data: gananciasProductosChartData,
       options: barChartOptions
     })
 

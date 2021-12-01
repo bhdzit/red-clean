@@ -51,9 +51,7 @@ class VentasController extends Controller
 
     public function getTicketPDF($id)
     {
-        $data = [
-            'titulo' => 'Styde.net'
-        ];
+        
 
         $data=Notas::find($id)
         ->append("items");

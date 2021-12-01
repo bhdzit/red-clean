@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             IngresosSeeders::class,
             EgresosSeeders::class,
             CajaSeeder::class,
+            GeneralSeeder::class
         ]);
 
     }
